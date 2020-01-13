@@ -1,0 +1,40 @@
+<html>
+<canvas id="gameCanvas" width="413" height="413"></canvas>
+
+<script>
+var canvas;
+var canvasContext;
+var ballX = 50;
+
+window.onload = function() {
+	canvas = document.getElementById('gameCanvas');
+	canvasContext = canvas.getContext('2d');
+
+	setInterval(drawEverything, 50);
+}
+
+  speed = 5
+
+function drawEverything() {
+	ballX = ballX + speed;
+
+  if(ballX < 0) {
+    speed = -speed
+  }
+  if(ballX > 400) {
+    speed = -speed
+  }
+
+
+
+
+	console.log(speed);
+	canvasContext.fillStyle = 'black';
+	canvasContext.fillRect(0,0,canvas.width,canvas.height);
+	canvasContext.fillStyle = 'red';
+	canvasContext.fillRect(ballX,ballX,10,10);
+}
+
+</script>
+
+</html>
