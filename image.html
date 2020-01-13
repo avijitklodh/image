@@ -2,9 +2,10 @@
 <canvas id="gameCanvas" width="413" height="413"></canvas>
 
 <script>
-var canvas;
-var canvasContext;
-var ballX = 50;
+let canvas
+let canvasContext
+let smallRect = 50
+let speed = 5
 
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
@@ -13,26 +14,26 @@ window.onload = function() {
 	setInterval(drawEverything, 50);
 }
 
-  speed = 5
-
 function drawEverything() {
-	ballX = ballX + speed;
 
-  if(ballX < 0) {
+  if(smallRect < 0) {
     speed = -speed
   }
-  if(ballX > 400) {
+  if(smallRect > 400) {
     speed = -speed
   }
 
+	smallRect = smallRect + speed;
 
-
-
-	console.log(speed);
 	canvasContext.fillStyle = 'black';
 	canvasContext.fillRect(0,0,canvas.width,canvas.height);
+  canvasContext.fillStyle = 'blue';
+  canvasContext.fillRect(smallRect,200,10,10);
+  canvasContext.fillStyle = 'green';
+  canvasContext.fillRect(200,smallRect,10,10);
 	canvasContext.fillStyle = 'red';
-	canvasContext.fillRect(ballX,ballX,10,10);
+	canvasContext.fillRect(smallRect,smallRect,10,10);
+
 }
 
 </script>
