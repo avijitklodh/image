@@ -1,39 +1,43 @@
 <html>
-<canvas id="gameCanvas" width="413" height="413"></canvas>
+
+<canvas id="animationCanvas" width="400" height="400"></canvas>
 
 <script>
+
 let canvas
 let canvasContext
-let smallRect = 50
+let increment = 0
 let speed = 5
 
 window.onload = function() {
-	canvas = document.getElementById('gameCanvas');
-	canvasContext = canvas.getContext('2d');
+  canvas = document.getElementById('animationCanvas');
+  canvasContext = canvas.getContext('2d');
 
-	setInterval(drawEverything, 50);
+  setInterval(drawEverything, 50);
 }
 
 function drawEverything() {
 
-  if(smallRect < 0) {
-    speed = -speed
-  }
-  if(smallRect > 400) {
-    speed = -speed
-  }
+  bounce()
+  increment = increment + speed;
 
-	smallRect = smallRect + speed;
-
-	canvasContext.fillStyle = 'black';
-	canvasContext.fillRect(0,0,canvas.width,canvas.height);
+  canvasContext.fillStyle = 'black';
+  canvasContext.fillRect(0,0,canvas.width,canvas.height);
   canvasContext.fillStyle = 'blue';
-  canvasContext.fillRect(smallRect,200,10,10);
+  canvasContext.fillRect(increment,200,10,10);
   canvasContext.fillStyle = 'green';
-  canvasContext.fillRect(200,smallRect,10,10);
-	canvasContext.fillStyle = 'red';
-	canvasContext.fillRect(smallRect,smallRect,10,10);
+  canvasContext.fillRect(200,increment,10,10);
+  canvasContext.fillStyle = 'red';
+  canvasContext.fillRect(increment,increment,10,10);
+}
 
+function bounce(){
+  if(increment < 0) {
+  speed = -speed
+  }
+  if(increment > 400) {
+  speed = -speed
+  }
 }
 
 </script>
